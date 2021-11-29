@@ -1,0 +1,1 @@
+export { Lab2 } from './Lab2';
