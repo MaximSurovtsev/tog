@@ -1,0 +1,97 @@
+body {
+    font-family: monospace;
+}
+.lab1-box {
+    max-width: 1000px;
+    margin: auto;
+    border-bottom: 1px solid #777;
+}
+
+
+.title {
+    font-size: 26px;
+    padding-top: 32px;
+    padding-bottom: 0px;
+    margin: 0;
+}
+.text {
+    margin: 16px 0;
+}
+.head-row {
+    background-color: #ccc;
+}
+.head-row, .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.head-item, .item {
+    text-align: center;
+    border: 1px solid #777;
+    width: calc(100% / 8);
+    border-bottom: 1px solid transparent;
+    width: 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+}
+
+.item > span {
+    width: 25%;
+}
+
+.head-item + .head-item, .item + .item {
+    border-left: 1px solid transparent;
+
+}
+
+.small {
+    width: 3%;
+}
+
+.grey {
+    background-color: #eee;
+}
+
+.area {
+    resize: none;
+    -webkit-appearance: none;   
+    appearance: none;
+    cursor: pointer;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding-top: 6px;
+    padding-left: 6px;
+    outline: none;
+
+    transition: 0.3s;
+
+    display: block;
+    margin: 16px 0 8px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.area:focus {
+    border-color: #999;
+}
+
+.btn {
+    display: block;
+    -webkit-appearance: none;   
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    background-color: #222;
+    border-radius: 8px;
+    width: 200px;
+    height: 32px;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #333;
+    box-shadow: 1px 1px 0 0 #999;
+}
