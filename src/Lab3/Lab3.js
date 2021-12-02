@@ -1,68 +1,104 @@
-import React, { useState, useRef, useEffect } from "react";
-import { algorithm } from "./helpers";
+import React from "react";
 import clsx from "clsx";
 import "../style.css";
+import { data } from "./api.js";
 
 export const Lab3 = () => {
-    
-    // const [state, setState] = useState({
-    //     a: -3,
-    //     b: 1.5,
-    //     c: 2.5,
-    //     d: -4,
-    //     e: -2.2,
-    //     k: 3
-    // });
-
-    // const _ = useRef(algorithm());
-    // const [render, setRender] = useState(false);
-
-    // useEffect(() => {
-    //     _.current = algorithm();
-    //     setRender(!render);
-    // }, [state]);
-
-    // const result = _.current;
+    console.log(data);
 
     return (
-        <div className="lab1-box">
-            <h1 className="title">
-                Аналитический и численный (Брауна — Робинсон) методы решения
-                непрерывной выпукло-вогнутой антагонистической игры в смешанных
-                стратегиях
-            </h1>
+        <div className="lab2-box">
+            <div className="inner">
+                <h1 className="title">Монотонный итеративный алгоритм</h1>
 
-            {/* {result?.map((obj, j) => {
-                const { t, hasPoint, text } = obj;
+                <div className="table-min">
+                    <div className="title-min bold">Исходная матрица:</div>
+                    <div className="box">
+                        {data.M.map((row, j) => (
+                            <div
+                                key={`row-${j}-input`}
+                                className={clsx("row-min", j % 2 && "grey")}
+                            >
+                                {row.map((e, i) => (
+                                    <div
+                                        key={`row-${j}-item-${i}-input`}
+                                        className={clsx("item-min")}
+                                    >
+                                        {e}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
-                return (
-                    <div key={`t-${j}`} className="table-min">
-                        <div className="title-min">{text}</div>
-                        {hasPoint && (
-                            <div className="title-min">Есть седловая точка</div>
-                        )}
-                        <div className="box">
-                            {t?.map((row, i) => (
-                                <div
-                                    key={`row-${j}-item-${i}`}
-                                    className={clsx("row-min", i % 2 && "grey")}
-                                >
-                                    {row.map((el, k) => (
+                <div className="title-min bold">{data.startStrategy}</div>
+                <div className="title-min bold">
+                    Оптимальная стратегия игрока X: [
+                    {data.optimal.map((e) => e.toFixed(3)).join(" ")}]
+                </div>
+                <div className="title-min bold">
+                    Цена игры: {data.cost.toFixed(3)}
+                </div>
+            </div>
+
+            <div className="flex-box">
+                {data.data?.map((obj, j) => {
+                    const { lowerBound, A, J, iteration, alpha, x, c } = obj;
+                    const _c = obj["c`"];
+                    const _x = obj["x`"];
+
+                    return (
+                        <div key={`t-${j}`} className="table-min offset">
+                            <div className="title-min bold">
+                                Итерация: {iteration}
+                            </div>
+                            <div className="title-min">
+                                Нижняя граница: {lowerBound.toFixed(3)}
+                            </div>
+                            <div className="title-min">J = [{J.join(" ")}]</div>
+                            <div className="title-min">
+                                ~с = [{_c.map((e) => e.toFixed(3)).join(" ")}]
+                            </div>
+                            <div className="title-min">
+                                ~x = [{_x.map((e) => e.toFixed(3)).join(" ")}]
+                            </div>
+                            <div className="title-min">
+                                x = [{x.map((e) => e.toFixed(3)).join(" ")}]
+                            </div>
+                            <div className="title-min">
+                                c = [{c[0].map((e) => e.toFixed(3)).join(" ")}]
+                            </div>
+                            <div className="title-min">
+                                alpha = [
+                                {alpha.map((e) => e.toFixed(3)).join(" ")}]
+                            </div>
+                            <div className="">
+                                <div className="title-min bold">A:</div>
+                                <div className="box">
+                                    {A.map((row, i) => (
                                         <div
+                                            key={`row-${j}-item-${i}-A`}
                                             className={clsx(
-                                                "item-min",
-                                                i < 3 && "small"
+                                                "row-min",
+                                                i % 2 === 0 && "grey"
                                             )}
                                         >
-                                            {el}
+                                            {row.map((e, k) => (
+                                                <div
+                                                    className={clsx("item-min")}
+                                                >
+                                                    {e}
+                                                </div>
+                                            ))}
                                         </div>
                                     ))}
                                 </div>
-                            ))}
+                            </div>
                         </div>
-                    </div>
-                );
-            })} */}
+                    );
+                })}
+            </div>
         </div>
     );
 };
