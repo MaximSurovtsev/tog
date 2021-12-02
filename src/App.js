@@ -41,13 +41,13 @@ export const App = () => {
                         </nav>
                     </div>
                     <Switch>
-                        <Route path="/lab1">
+                        <Route path="/tog/lab1">
                             <Lab1 />
                         </Route>
-                        <Route path="/lab2">
+                        <Route path="/tog/lab2">
                             <Lab2 />
                         </Route>
-                        <Route path="/lab3">
+                        <Route path="/tog/lab3">
                             <Lab3 />
                         </Route>
 
