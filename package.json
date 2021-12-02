@@ -2,6 +2,7 @@
   "name": "tog",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://maximsurovtsev.github.io/tog/",
   "dependencies": {
     "clsx": "^1.1.1",
     "cra-template": "1.1.2",
