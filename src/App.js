@@ -20,21 +20,21 @@ export const App = () => {
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                to="/lab1"
+                                to="/tog/lab1"
                             >
                                 Lab 1
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                to="/lab2"
+                                to="/tog/lab2"
                             >
                                 Lab 2
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                to="/lab3"
+                                to="/tog/lab3"
                             >
                                 Lab 3
                             </NavLink>
@@ -53,7 +53,7 @@ export const App = () => {
 
                         <Redirect
                             to={{
-                                pathname: "/lab1"
+                                pathname: "/tog/lab1"
                             }}
                         />
                     </Switch>
