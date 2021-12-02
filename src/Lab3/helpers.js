@@ -1,45 +1,27 @@
-import SimpleSimplex from "simple-simplex";
-
+import YASMIJ from "./yasmij";
 const { min, max, random, round } = Math;
 
-const t = `11 10 15,16 5 13,15 20 10`
+
+const t = `6 18 5,17 13 15,9 13 19`
     .split(",")
     .map((row) => row.split(" ").map((e) => +e));
 
 const transpose = (m) => m[0].map((_, i) => m.map((x) => x[i]));
 
 const solver = (matrix) => {
-    const d = "abcde";
-    const c = Array.from("1".repeat(matrix.length)).reduce((acc, e, i) => {
-        acc[d[i]] = +e;
-        return acc;
-    }, {});
+    const constraints = matrix.map(
+        (row) => row.map((e, i) => `${e}x${i + 1}`).join(" + ") + " <= 1"
+    );
+    const objective = matrix[0].map((_, i) => `x${i + 1}`).join(" + ");
+    console.log('constraints', constraints)
+    const input = {
+        type: "maximize",
+        objective,
+        constraints
+    };
 
-    console.log(matrix);
-    const tt = transpose(matrix).map((row) => row.map((e) => e * 1));
-    // const tt = matrix;
-    const A = tt.map((e, i) => ({
-        namedVector: e.reduce((acc, ee, i) => {
-            acc[d[i]] = ee;
-            return acc;
-        }, {}),
-        constraint: "<=",
-        constant: 1
-    }));
+    const { result } = YASMIJ.solve(input);
 
-    console.log(c);
-    console.log(A);
-
-    const solver = new SimpleSimplex({
-        objective: c,
-        constraints: A,
-        optimizationType: "max"
-    });
-
-    const result = solver.solve({
-        methodName: "simplex"
-    });
-    console.log(result);
     return result;
 };
 
@@ -63,13 +45,11 @@ export const bR = (table, n) => {
         const lb = min(...c);
         const J = c.indexOf(lb);
         const A = [table.map((row) => row[J])];
-        console.log("🚀 ~ file: helpers.js ~ line 64 ~ bR ~ A", A);
 
         const shape = [A.length, A[0].length];
 
         let x_stroke, simplex_solver;
         if (shape.includes(1)) {
-            console.log(A, shape, "shaaaape");
             x_stroke = Array.from("0".repeat(shape[1])).map((e) => +e);
             const maxIndex = A[0].indexOf(max(...A[0]));
             x_stroke[maxIndex] = 1;
@@ -81,7 +61,8 @@ export const bR = (table, n) => {
                 (k) => simplex_solver[k] / optimum
             );
         }
-        console.log(x_stroke);
+
+        console.log('x_stroke', x_stroke);
         const c_stroke = Array.from("0".repeat(tt[0].length)).map((e) => +e);
 
         for (let i = 0; i < x_stroke.length; i++) {
@@ -94,25 +75,31 @@ export const bR = (table, n) => {
         console.log(`~c = ${c_stroke}`);
 
         const game = [c, c_stroke];
-        const { solution } = solver(game);
-        simplex_solver = solution.coefficients;
-        const { optimum } = solution;
-        alpha = Object.keys(simplex_solver).map(
-            (k) => simplex_solver[k] / optimum
-        );
-        // alpha = simplex_solver.x / simplex_solver.fun;
 
-        console.log(`alpha = ${alpha}`);
+        console.log('c:', c);
 
+        const { x1, x2, x3, z }  = solver(game);
+        console.log('x1, x2, x3, z ', x1, x2, x3, z)
+        const xxx = [x1, x2, x3];
+        const iii = xxx.findIndex(e => e === 0);
+        xxx.splice(iii, 1)
+
+        alpha = xxx.map(x => x / z);
+        console.log('alpha: ', alpha)
         for (let i = 0; i < x_stroke.length; i++) {
-            x = alpha[0] * x[i] + alpha[1] * x_stroke[i];
-            c = alpha[0] * c[i] + alpha[1] * c_stroke[i];
+            x[i] += alpha[0] * x[i] + alpha[1] * x_stroke[i];
+            c[i] += alpha[0] * c[i] + alpha[1] * c_stroke[i];
         }
 
         console.log(`x = ${x}`);
         console.log(`c = ${c}`);
 
         console.log("-".repeat(30));
+        console.log("-".repeat(30));
+        console.log("-".repeat(30));
+        console.log("-".repeat(30));
+
+        if (iteration > 30) break;
     }
 };
 
