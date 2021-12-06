@@ -20,7 +20,7 @@ export const Lab1 = () => {
     }, [state]);
 
     useEffect(() => {
-        area.current.value = state.map((e) => e.join(" ")).join("\n")
+        area.current.value = state.map((e) => e.join(" ")).join("\n");
     }, []);
 
     const [result, V, X, Y, mima, mami] = _.current;
@@ -33,7 +33,7 @@ export const Lab1 = () => {
             return;
         }
 
-        const rows = value.map(row => row.split(" "));
+        const rows = value.map((row) => row.split(" "));
         rows.forEach((row) => {
             if (row.length !== 3) {
                 alert("Неправильно ввод!");
@@ -48,7 +48,7 @@ export const Lab1 = () => {
             });
         });
 
-        setState(rows.map(row => row.map(el => +el)));
+        setState(rows.map((row) => row.map((el) => +el)));
     };
 
     return (
@@ -78,36 +78,44 @@ export const Lab1 = () => {
             <div className="text">V = {V}</div>
             <div className="text">X = [{X}]</div>
             <div className="text">Y = [{Y}]</div>
-
-            <div className="head-row">
-                {headKeys?.map((key, i) => (
-                    <div
-                        key={`head-row-${i}`}
-                        className={clsx("item", i < 3 && "small")}
-                    >
-                        {key}
+            <div className="__table-box">
+                <div className="__table">
+                    <div className="head-row">
+                        {headKeys?.map((key, i) => (
+                            <div
+                                key={`head-row-${i}`}
+                                className={clsx("item", i < 3 && "small")}
+                            >
+                                {key}
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
 
-            {result?.map((items, j) => (
-                <div key={`row-${j}`} className={clsx("row", j % 2 && "grey")}>
-                    {items?.map((item, i) => (
+                    {result?.map((items, j) => (
                         <div
-                            key={`row-${j}-item-${i}`}
-                            className={clsx("item", i < 3 && "small")}
+                            key={`row-${j}`}
+                            className={clsx("row", j % 2 && "grey")}
                         >
-                            {item instanceof Array
-                                ? item.map((e, k) => (
-                                      <span key={`span-${e}-item-${j}-${k}`}>
-                                          {e}
-                                      </span>
-                                  ))
-                                : item}
+                            {items?.map((item, i) => (
+                                <div
+                                    key={`row-${j}-item-${i}`}
+                                    className={clsx("item", i < 3 && "small")}
+                                >
+                                    {item instanceof Array
+                                        ? item.map((e, k) => (
+                                              <span
+                                                  key={`span-${e}-item-${j}-${k}`}
+                                              >
+                                                  {e}
+                                              </span>
+                                          ))
+                                        : item}
+                                </div>
+                            ))}
                         </div>
                     ))}
                 </div>
-            ))}
+            </div>
         </div>
     );
 };

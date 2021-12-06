@@ -48,6 +48,35 @@ export const Lab4 = () => {
     const d2 = Nesh(d);
     const d1d2 = intersection(d1, d2);
 
+    const drawSmallMatrix = (title, _table) => {
+        return (
+            title +
+            " = " +
+            "[<br>" +
+            _table
+                .map((row, j) => `${"&nbsp;".repeat(4)}[ ${row.join(" ")} ]`)
+                .join("<br />") +
+            `<br>${"&nbsp;".repeat(0)}]`
+        );
+    };
+
+    const drawMatrix = (title, _table) =>
+        `${title} = [<br> ${_table
+            .map((table, i) => {
+                return (
+                    "&nbsp;".repeat(8) +
+                    "[<br>" +
+                    table
+                        .map(
+                            (row, j) =>
+                                `${"&nbsp;".repeat(12)}[ ${row.join(" ")} ]`
+                        )
+                        .join("<br />") +
+                    `<br>${"&nbsp;".repeat(8)}]`
+                );
+            })
+            .join("<br/>")} <br>${"&nbsp;".repeat(4)}]`;
+
     return (
         <div className="lab2-box">
             <div className="inner">
@@ -55,37 +84,89 @@ export const Lab4 = () => {
                     Неантагонистические игры. Критерии выбора оптимальных
                     стратегий в бескоалиционных играх нескольких игроков
                 </h1>
+                <div className="code-title">Исходные данные</div>
+                <div className="code-text">Задача "перекресток" (p), задача "дилемма" (d), задача "спор" (s),</div>
+                <div className="code-box">
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{ __html: drawMatrix("p", p) }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{ __html: drawMatrix("s", s) }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{ __html: drawMatrix("d", d) }}
+                    ></div>
+                </div>
 
-                <code>
-                    [
-                     <br />   
-                     &nbsp;&nbsp;&nbsp;&nbsp;1
-                     <br />   
-                    ]
-                </code>
+                <div className="code-title">Решение для задачи "перекресток"</div>
 
-                {/* <div className="table-min">
-                    <div className="title-min bold">Исходная матрица:</div>
-                    <div className="box">
-                        {data.M.map((row, j) => (
-                            <div
-                                key={`row-${j}-input`}
-                                className={clsx("row-min", j % 2 && "grey")}
-                            >
-                                {row.map((e, i) => (
-                                    <div
-                                        key={`row-${j}-item-${i}-input`}
-                                        className={clsx("item-min")}
-                                    >
-                                        {e}
-                                    </div>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                </div> */}
+                <div className="code-box">
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("pareto", p1)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("nash", p2)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("intersection", p1p2)
+                        }}
+                    ></div>
+                </div>
+                <div className="code-title">Решение для задачи "дилемма"</div>
 
-             
+                <div className="code-box">
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("pareto", d1)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("nash", d2)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("intersection", d1d2)
+                        }}
+                    ></div>
+                </div>
+                <div className="code-title">Решение для задачи "спор"</div>
+
+                <div className="code-box">
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("pareto", s1)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("nash", s2)
+                        }}
+                    ></div>
+                    <div
+                        className="code"
+                        dangerouslySetInnerHTML={{
+                            __html: drawSmallMatrix("intersection", s1s2)
+                        }}
+                    ></div>
+                </div>
             </div>
         </div>
     );

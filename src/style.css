@@ -6,13 +6,26 @@ body {
     max-width: 1000px;
     margin: auto;
     border-bottom: 1px solid #777;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 .lab2-box {
     max-width: 1000px;
     margin: auto;
+    padding: 16px;
+    box-sizing: border-box;
 }
+.__table-box {
+    overflow: hidden;
 
+}
+.__table {
+    
+    overflow: auto;
+    white-space: nowrap;
+
+}
 
 .title {
     font-size: 26px;
@@ -29,6 +42,7 @@ body {
 .head-row, .row {
     display: flex;
     justify-content: space-between;
+    min-width: 900px;
 }
 
 .head-item, .item {
@@ -103,8 +117,13 @@ body {
 }
 
 .table-min {
+    overflow: hidden;
+}
+.table-min {
     margin-bottom: 36px;
     margin-top: 36px;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .box {
@@ -120,6 +139,7 @@ body {
     height: 36px;
     align-items: center;
     width: fit-content;
+
 }
 
 .item-min {
@@ -184,4 +204,55 @@ body {
 
 .link:hover, .active {
     border-bottom: 1px solid #000;
+}
+
+
+.code {
+    /* margin: 32px 0; */
+    line-height: 1.5;
+    width: calc(100% / 3);
+    min-width: 180px;
+    font-size: 14px;
+}
+
+.code-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.code-title {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 16px 0;
+    margin-top: 32px;
+}
+
+.code-text {
+    margin-bottom: 16px;
+    font-size: 15px;
+
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 4.5vw;
+        padding-top: 0;
+
+    }
+
+    .lab1-box {
+        padding-top: 0;
+    }
+    .lab2-box {
+        padding-top: 0;
+    }
+
+    .offset {
+        width: 100%;
+        margin: 16px 0;
+    }
+
+    .inner {
+        padding-left: 0;
+    }
 }

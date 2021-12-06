@@ -38,17 +38,17 @@ export const App = () => {
                                 className="link"
                                 activeClassName="active"
                                 // to="/tog/lab3"
-                                to="/lab3"
+                                to="/RK1"
                             >
-                                Lab 3
+                                RK1
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
                                 // to="/tog/lab4"
-                                to="/lab4"
+                                to="/lab3"
                             >
-                                Lab 4
+                                Lab 3
                             </NavLink>
                         </nav>
                     </div>
@@ -62,11 +62,11 @@ export const App = () => {
                             <Lab2 />
                         </Route>
                         {/* <Route path="/tog/lab3"> */}
-                        <Route path="/lab3">
+                        <Route path="/RK1">
                             <Lab3 />
                         </Route>
                         {/* <Route path="/tog/lab4"> */}
-                        <Route path="/lab4">
+                        <Route path="/lab3">
                             <Lab4 />
                         </Route>
 
