@@ -21,52 +21,52 @@ export const App = () => {
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                // to="/tog/lab1"
-                                to="/lab1"
+                                to="/tog/lab1"
+                                // to="/lab1"
                             >
                                 Lab 1
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                to="/lab2"
-                                // to="/tog/lab2"
+                                // to="/lab2"
+                                to="/tog/lab2"
                             >
                                 Lab 2
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                // to="/tog/lab3"
-                                to="/RK1"
+                                to="/tog/RK1"
+                                // to="/RK1"
                             >
                                 RK1
                             </NavLink>
                             <NavLink
                                 className="link"
                                 activeClassName="active"
-                                // to="/tog/lab4"
-                                to="/lab3"
+                                to="/tog/lab3"
+                                // to="/lab3"
                             >
                                 Lab 3
                             </NavLink>
                         </nav>
                     </div>
                     <Switch>
-                        {/* <Route path="/tog/lab1"> */}
-                        <Route path="/lab1">
+                        <Route path="/tog/lab1">
+                        {/* <Route path="/lab1"> */}
                             <Lab1 />
                         </Route>
-                        {/* <Route path="/tog/lab2"> */}
-                        <Route path="/lab2">
+                        <Route path="/tog/lab2">
+                        {/* <Route path="/lab2"> */}
                             <Lab2 />
                         </Route>
-                        {/* <Route path="/tog/lab3"> */}
-                        <Route path="/RK1">
+                        <Route path="/tog/RK1">
+                        {/* <Route path="/RK1"> */}
                             <Lab3 />
                         </Route>
-                        {/* <Route path="/tog/lab4"> */}
-                        <Route path="/lab3">
+                        <Route path="/tog/lab3">
+                        {/* <Route path="/lab3"> */}
                             <Lab4 />
                         </Route>
 
